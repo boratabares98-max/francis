@@ -63,44 +63,48 @@
 
     .basketball {
       position: absolute;
-      width: 68px;
-      height: 68px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffb14a 0%, #f28c1c 45%, #d96808 100%);
-      border: 2px solid rgba(0, 0, 0, 0.2);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+      background:
+        radial-gradient(circle at 28% 28%, #ffcf8a 0 10%, #f39a2e 11% 35%, #d86f11 36% 100%);
+      border: 3px solid #2a1608;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
       z-index: 2;
       animation: floatBall linear forwards;
+      overflow: hidden;
     }
 
-    .basketball::before,
-    .basketball::after {
+    .basketball::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
-    }
-
-    .basketball::before {
       background:
         linear-gradient(90deg,
           transparent 47%,
-          #1d1209 47%,
-          #1d1209 53%,
+          #2a1608 47%,
+          #2a1608 53%,
           transparent 53%),
         linear-gradient(0deg,
           transparent 47%,
-          #1d1209 47%,
-          #1d1209 53%,
-          transparent 53%);
-      opacity: 0.95;
+          #2a1608 47%,
+          #2a1608 53%,
+          transparent 53%),
+        radial-gradient(circle at -8% 50%, transparent 56%, #2a1608 57%, #2a1608 61%, transparent 62%),
+        radial-gradient(circle at 108% 50%, transparent 56%, #2a1608 57%, #2a1608 61%, transparent 62%);
+      opacity: 1;
     }
 
     .basketball::after {
-      background:
-        radial-gradient(circle at 0% 50%, transparent 59%, #1d1209 60%, #1d1209 63%, transparent 64%),
-        radial-gradient(circle at 100% 50%, transparent 59%, #1d1209 60%, #1d1209 63%, transparent 64%);
-      opacity: 0.95;
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      top: 14px;
+      left: 16px;
     }
 
     @keyframes floatBall {
@@ -131,7 +135,7 @@
 
   <div class="content">
     <h1>Francis</h1>
-    <p>Floating basketballs over your video background</p>
+    
   </div>
 
   <script>
