@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Francis</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.55);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.22);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      color: white;
+      font-size: clamp(3rem, 10vw, 6rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    p {
+      margin-top: 12px;
+      color: rgba(255,255,255,0.9);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      text-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    }
+
+    .basketball {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffb14a 0%, #f28c1c 45%, #d96808 100%);
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+      z-index: 2;
+      animation: floatBall linear forwards;
+    }
+
+    .basketball::before,
+    .basketball::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+
+    .basketball::before {
+      background:
+        linear-gradient(90deg,
+          transparent 47%,
+          #1d1209 47%,
+          #1d1209 53%,
+          transparent 53%),
+        linear-gradient(0deg,
+          transparent 47%,
+          #1d1209 47%,
+          #1d1209 53%,
+          transparent 53%);
+      opacity: 0.95;
+    }
+
+    .basketball::after {
+      background:
+        radial-gradient(circle at 0% 50%, transparent 59%, #1d1209 60%, #1d1209 63%, transparent 64%),
+        radial-gradient(circle at 100% 50%, transparent 59%, #1d1209 60%, #1d1209 63%, transparent 64%);
+      opacity: 0.95;
+    }
+
+    @keyframes floatBall {
+      0% {
+        transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.9);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(45vh) translateX(35px) rotate(180deg) scale(1);
+      }
+      100% {
+        transform: translateY(-15vh) translateX(-35px) rotate(360deg) scale(0.95);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video class="video-bg" autoplay loop muted playsinline>
+    <source src="FRANCIS SLSEEP.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Francis</h1>
+    <p>Floating basketballs over your video background</p>
+  </div>
+
+  <script>
+    function createBasketball() {
+      const ball = document.createElement('div');
+      ball.className = 'basketball';
+      ball.style.left = Math.random() * (window.innerWidth - 80) + 'px';
+      ball.style.animationDuration = (Math.random() * 4 + 5) + 's';
+      ball.style.opacity = Math.random() * 0.35 + 0.65;
+      document.body.appendChild(ball);
+      setTimeout(() => ball.remove(), 9500);
+    }
+
+    setInterval(createBasketball, 700);
+  </script>
+</body>
+</html>
